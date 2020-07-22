@@ -1,9 +1,9 @@
-FROM python:3.6.7-alpine
+FROM python:3.8-alpine
 
 ENV PYTHONUNBUFFERED 1
 
 RUN apk update && \
-    apk add --virtual build-deps gcc python-dev musl-dev && \
+    apk add --virtual build-deps gcc python3-dev musl-dev && \
     apk add postgresql-dev
 
 RUN mkdir /code
