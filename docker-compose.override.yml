@@ -7,7 +7,7 @@ services:
     volumes:
       - ./mysite:/code
     environment:
-      DJANGO_DEBUG: "True"
+      DJANGO_DEBUG: ${DJANGO_DEBUG}
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_DB_HOST: "db"
       DJANGO_WEB_HOST: "web"
