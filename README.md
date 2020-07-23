@@ -121,5 +121,13 @@ python manage.py runserver 0.0.0.0:8000
 ```
 
 ### Adding an app to Django
+
+Create new app,
 ```
 python manage.py startapp <newappname>
+```
+
+Create database migrations before commit/deploy,
+```
+python manage.py makemigrations [<appname>]
+```
