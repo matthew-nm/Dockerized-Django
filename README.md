@@ -98,6 +98,28 @@ Click on “Add server”, set “Name” to anything we want, then click on the
 
 To run Django in debug mode, either change the local `.env` debug variable, or run `export DJANGO_DEBUG=True` in console window before starting containers.
 
+### Running
+
+Perform initial database migration to create superuser,
+```
+docker-compose -f docker-compose.migrate.yml run --rm migrate
+```
+
+The entire project can be brought up as in production,
+```
+docker-compose up -d
+```
+
+Or the database can be brought up in background with Django web app as interactive session,
+```
+docker-compose up -d db
+docker-compose run -p 8000:8000 web sh
+```
+and once in web container shell, start webserver with,
+```
+python manage.py runserver 0.0.0.0:8000
+```
+
 ### Adding an app to Django
 ```
-python django/manage.py startapp <newappname>
+python manage.py startapp <newappname>
