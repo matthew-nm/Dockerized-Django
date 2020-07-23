@@ -20,7 +20,7 @@ Overview
 - db-admin
   - PGAdmin
 
-The root directory of this project contains the top-level Django directory `mysite`, the nginx configuration, as well as other project-level files.
+The root directory of this project contains the top-level Django directory `django`, the nginx configuration, as well as other project-level files.
 
 ### Addresses
  * Our main endpoint, the nginx service (http://localhost:8088)
@@ -100,4 +100,4 @@ To run Django in debug mode, either change the local `.env` debug variable, or r
 
 ### Adding an app to Django
 ```
-python mysite/manage.py startapp <newappname>
+python django/manage.py startapp <newappname>

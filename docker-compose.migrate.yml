@@ -9,7 +9,7 @@ services:
       - backend
     command: ["./wait-for.sh", "db:5432", "--", "./run-migrations.sh"]
     volumes:
-      - ./mysite:/code
+      - ./django:/code
     environment:
       DJANGO_DEBUG: "True"
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
