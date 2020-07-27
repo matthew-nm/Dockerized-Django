@@ -7,7 +7,7 @@ services:
     volumes:
       - ./django:/code
     environment:
-      DJANGO_DEBUG: ${DJANGO_DEBUG}
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-False}
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_DB_HOST: "db"
       DJANGO_WEB_HOST: "web"

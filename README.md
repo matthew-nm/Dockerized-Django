@@ -44,7 +44,6 @@ In production, shell environment variables should not be necessary, as a nominal
 
 Template `.env` file,
 ```
-DJANGO_DEBUG=True
 DJANGO_DB_NAME=db
 DJANGO_SECRET_KEY=secret
 
@@ -57,6 +56,11 @@ POSTGRES_PASSWORD=secret
 
 PGADMIN_DEFAULT_EMAIL=admin@site.com
 PGADMIN_DEFAULT_PASSWORD=secret
+```
+
+Optional development variables,
+```
+DJANGO_DEBUG=True
 ```
 
 ## Production
