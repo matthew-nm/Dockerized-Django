@@ -69,12 +69,13 @@ Obtain the production-ready `.env` file and place within project root.
 
 Perform any database migrations and static file collection,
 ```
+docker-compose -f docker-compose.migrate.yml build
 docker-compose -f docker-compose.migrate.yml run --rm migrate
 ```
 
 Build and start containers,
 ```
-docker-compose up -d
+docker-compose up --build -d
 ```
 
 Stop/start containers as necessary,
@@ -108,6 +109,7 @@ Perform initial database migration to create superuser,
 ```
 docker-compose -f docker-compose.migrate.yml run --rm migrate
 ```
+> Note: May need to use `docker-compose -f docker-compose.migrate.yml build` prior to above cmd during development if `requirements.txt` changes.
 
 The entire project can be brought up as in production,
 ```
@@ -121,7 +123,7 @@ docker-compose run -p 8000:8000 web sh
 ```
 and once in web container shell, start webserver with,
 ```
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0:8000
 ```
 
 ### Adding an app to Django
