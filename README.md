@@ -31,6 +31,22 @@ The root directory of this project contains the top-level Django directory `djan
 
 The Nginx mapping can be changed to port 80 in the relevant docker-compose file in order to make this Django app the primary web site of the host machine (ie: accessible via browser without specifying port).
 
+If the PGAdmin server is unable to connect to the default port `[::]`, then set the follow in `docker-compose.override.yml`,
+```
+PGADMIN_LISTEN_ADDRESS='0.0.0.0'
+```
+
+The PGAdmin server can be mapped through the main nginx proxy by using the following,
+```
+location /pgadmin4/ {
+    proxy_set_header X-Script-Name /pgadmin4;
+    proxy_set_header Host $host;
+    proxy_pass http://db-admin/;
+    proxy_redirect off;
+}
+```
+in which case, the port mapping to db-admin in the compose file can be removed.
+
 ### Environment Variables
 This app uses environment variables to configure the various components.
 This allows simple decoupling so that individual components can be run inside or outside of containers for development purposes.
