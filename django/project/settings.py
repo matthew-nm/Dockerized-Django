@@ -123,10 +123,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 SPAGHETTI_SAUCE = {
     'apps': [
         'auth',
-        'polls',
+        'init',
     ],
     'show_fields': False,
     'exclude': {
-        'auth': ['user'],
+        # 'auth': ['user'],
     },
 }
