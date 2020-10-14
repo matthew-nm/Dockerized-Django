@@ -106,5 +106,5 @@ venv.bak/
 .vscode/
 
 django/static
-postgres-data/
-pgadmin-conf/
+postgres-data*
+pgadmin-conf*
