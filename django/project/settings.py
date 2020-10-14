@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_spaghetti',
     'init',
 ]
 
@@ -115,3 +116,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+# Model graph (django-spaghetti)
+
+SPAGHETTI_SAUCE = {
+    'apps': [
+        'auth',
+        'polls',
+    ],
+    'show_fields': False,
+    'exclude': {
+        'auth': ['user'],
+    },
+}
