@@ -17,7 +17,7 @@ services:
       - web
 
   db:
-    image: postgres
+    image: postgres:12
     networks:
       - backend
     environment:

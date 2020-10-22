@@ -22,30 +22,11 @@ Overview
 
 The root directory of this project contains the top-level Django directory `django`, the nginx configuration, as well as other project-level files.
 
-### Addresses
- * Our main endpoint, the nginx service (http://localhost:8088)
- * Direct endpoint of the app server (http://localhost:8001)
- * The Postgres admin endpoint (http://localhost:8080)
- * Our Postgres `db` service listening for connections (but not HTTP requests) (localhost:5432)
- * If we run an app locally, we can also access it (http://localhost:8000)
-
-The Nginx mapping can be changed to port 80 in the relevant docker-compose file in order to make this Django app the primary web site of the host machine (ie: accessible via browser without specifying port).
-
+### Web Addresses
 If the PGAdmin server is unable to connect to the default port `[::]`, then set the follow in `docker-compose.override.yml`,
 ```
 PGADMIN_LISTEN_ADDRESS='0.0.0.0'
 ```
-
-The PGAdmin server can be mapped through the main nginx proxy by using the following,
-```
-location /pgadmin4/ {
-    proxy_set_header X-Script-Name /pgadmin4;
-    proxy_set_header Host $host;
-    proxy_pass http://db-admin/;
-    proxy_redirect off;
-}
-```
-in which case, the port mapping to db-admin in the compose file can be removed.
 
 ### Environment Variables
 This app uses environment variables to configure the various components.
@@ -72,6 +53,9 @@ POSTGRES_PASSWORD=secret
 
 PGADMIN_DEFAULT_EMAIL=admin@site.com
 PGADMIN_DEFAULT_PASSWORD=secret
+
+SSL_CERTIFICATE=./nginx/certs/localhost.crt
+SSL_CERTIFICATE_KEY=./nginx/certs/localhost.key
 ```
 
 Optional development variables,
@@ -91,6 +75,7 @@ docker-compose -f docker-compose.migrate.yml run --rm migrate
 
 Build and start containers,
 ```
+docker-compose pull
 docker-compose up --build -d
 ```
 
@@ -132,15 +117,17 @@ The entire project can be brought up as in production,
 docker-compose up -d
 ```
 
-Or the database can be brought up in background with Django web app as interactive session,
+Or the Django web app can be run as an interactive session,
 ```
 docker-compose up -d db
 docker-compose run -p 8000:8000 web sh
 ```
 and once in web container shell, start webserver with,
 ```
+export DJANGO_DEBUG=True
 python manage.py runserver 0:8000
 ```
+and access at (http://localhost:8000).
 
 ### Adding an app to Django
 

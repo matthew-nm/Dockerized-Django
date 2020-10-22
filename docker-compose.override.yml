@@ -19,9 +19,12 @@ services:
   nginx:
     restart: unless-stopped
     ports:
-      - 8088:80
+      - 80:80
+      - 443:443
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ${SSL_CERTIFICATE}:/etc/nginx/certs/certificate.crt
+      - ${SSL_CERTIFICATE_KEY}:/etc/nginx/certs/key.key
       - ./django/static:/code/static
 
   db:
@@ -36,7 +39,7 @@ services:
 
   db-admin:
     restart: unless-stopped
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     volumes:
       - ./pgadmin-conf:/var/lib/pgadmin
     environment:
@@ -44,7 +47,5 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
       - db
-    ports:
-      - 8080:80
     networks:
       - backend
