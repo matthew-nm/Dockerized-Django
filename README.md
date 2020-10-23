@@ -41,6 +41,7 @@ In production, shell environment variables should not be necessary, as a nominal
 
 Template `.env` file,
 ```
+DJANGO_WEB_HOST=site.com
 DJANGO_DB_NAME=db
 DJANGO_SECRET_KEY=secret
 
