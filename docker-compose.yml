@@ -4,10 +4,10 @@ services:
   web:
     build: .
     command: gunicorn project.wsgi --bind 0.0.0.0:8001
-    depends_on:
-      - db
     networks:
       - backend
+    depends_on:
+      - db
 
   nginx:
     image: nginx:latest
@@ -20,8 +20,28 @@ services:
     image: postgres:13
     networks:
       - backend
-    environment:
-      POSTGRES_DB: ${DJANGO_DB_NAME}
+
+  # redis:
+  #   image: redis:6-alpine
+  #   networks:
+  #     - backend
+  #
+  # celery:
+  #   build: .
+  #   command: celery -A project worker -l info
+  #   networks:
+  #     - backend
+  #   depends_on:
+  #     - redis
+  #     - db
+  #
+  # celery-beat:
+  #   build: .
+  #   command: celery -A project beat -l info
+  #   networks:
+  #     - backend
+  #   depends_on:
+  #     - redis
 
 networks:
   backend:

@@ -1,5 +1,7 @@
 Django>=3.0,<3.1
 django-spaghetti-and-meatballs
+celery
 gunicorn
 psycopg2-binary
 python-decouple
+redis
