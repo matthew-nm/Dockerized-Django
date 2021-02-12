@@ -26,6 +26,8 @@ services:
       - ${SSL_CERTIFICATE}:/etc/nginx/certs/certificate.crt
       - ${SSL_CERTIFICATE_KEY}:/etc/nginx/certs/key.key
       - ./django/static:/code/static
+    depends_on:
+      - db-admin
 
   db:
     restart: unless-stopped
