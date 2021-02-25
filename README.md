@@ -95,6 +95,8 @@ docker-compose down
 
 This image comes with an administrative interface to the Postgres database.
 
+> Note: To keep configuration persistent, see note in docker-compose.override.yml
+
 To log in, access via web interface (see network mappings, above).
 Credentials should be availabile in `.env` file.
 Click on “Add server”, set “Name” to anything we want, then click on the tab “Connection” and fill in 'db' as hostname, and the database credentials defined in the `.env` file for username and password.
@@ -106,6 +108,8 @@ Click on “Add server”, set “Name” to anything we want, then click on the
 To run Django in debug mode, either change the local `.env` debug variable, or run `export DJANGO_DEBUG=True` in console window before starting containers.
 
 ### Running
+
+> Note: If you would like the db-admin configuration to be persistent, see note in docker-compose.override.yml
 
 Perform initial database migration to create superuser,
 ```
