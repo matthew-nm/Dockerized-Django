@@ -127,6 +127,12 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
 
 
+# Celery configuration
+
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
+
+
 # Model graph (django-spaghetti)
 
 SPAGHETTI_SAUCE = {
