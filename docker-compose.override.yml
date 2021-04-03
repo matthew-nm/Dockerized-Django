@@ -43,9 +43,8 @@ services:
   db-admin:
     restart: unless-stopped
     image: dpage/pgadmin4:latest
-    # volumes:
-    #   - ./pgadmin-conf:/var/lib/pgadmin
-      # create and run `sudo chown -R 5050:5050 pgadmin-conf` beforehand
+    volumes:
+      - ./pgadmin-conf:/var/lib/pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}

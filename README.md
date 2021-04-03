@@ -39,26 +39,6 @@ Environment variables are read in the following order,
 
 In production, shell environment variables should not be necessary, as a nominal `.env` file should exist - but will not be source-controlled along with this project for security purposes!
 
-Template `.env` file,
-```
-DJANGO_WEB_HOST=site.com
-DJANGO_DB_NAME=db
-DJANGO_SECRET_KEY=secret
-
-DJANGO_SU_NAME=admin
-DJANGO_SU_EMAIL=admin@site.com
-DJANGO_SU_PASSWORD=secret
-
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=secret
-
-PGADMIN_DEFAULT_EMAIL=admin@site.com
-PGADMIN_DEFAULT_PASSWORD=secret
-
-SSL_CERTIFICATE=./nginx/certs/localhost.crt
-SSL_CERTIFICATE_KEY=./nginx/certs/localhost.key
-```
-
 Optional development variables,
 ```
 DJANGO_DEBUG=True
@@ -109,11 +89,9 @@ To run Django in debug mode, either change the local `.env` debug variable, or r
 
 ### Running
 
-> Note: If you would like the db-admin configuration to be persistent, see note in docker-compose.override.yml
-
-Perform initial database migration to create superuser,
+Run the init script upon initial project clone,
 ```
-docker-compose -f docker-compose.migrate.yml run --rm migrate
+./init.sh
 ```
 > Note: May need to use `docker-compose -f docker-compose.migrate.yml build` prior to above cmd during development if `requirements.txt` changes.
 
