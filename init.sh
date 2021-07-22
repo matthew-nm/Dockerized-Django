@@ -9,7 +9,7 @@ mkdir pgadmin-conf
 mkdir postgres-data
 
 # initialize database
-docker-compose -f docker-compose.migrate.yml run --rm migrate
+docker compose -f docker-compose.migrate.yml run --rm migrate
 
 # fix permissions
 sudo chmod 775 postgres-data
