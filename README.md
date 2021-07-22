@@ -50,25 +50,25 @@ Obtain the production-ready `.env` file and place within project root.
 
 Perform any database migrations and static file collection,
 ```
-docker-compose -f docker-compose.migrate.yml build
-docker-compose -f docker-compose.migrate.yml run --rm migrate
+docker compose -f docker-compose.migrate.yml build
+docker compose -f docker-compose.migrate.yml run --rm migrate
 ```
 
 Build and start containers,
 ```
-docker-compose pull
-docker-compose up --build -d
+docker compose pull
+docker compose up --build -d
 ```
 
 Stop/start containers as necessary,
 ```
-docker-compose stop
-docker-compose start
+docker compose stop
+docker compose start
 ```
 
 Stop and remove containers,
 ```
-docker-compose down
+docker compose down
 ```
 
 ### PGAdmin
@@ -93,17 +93,17 @@ Run the init script upon initial project clone,
 ```
 ./init.sh
 ```
-> Note: May need to use `docker-compose -f docker-compose.migrate.yml build` prior to above cmd during development if `requirements.txt` changes.
+> Note: May need to use `docker compose -f docker-compose.migrate.yml build` prior to above cmd during development if `requirements.txt` changes.
 
 The entire project can be brought up as in production,
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 Or the Django web app can be run as an interactive session,
 ```
-docker-compose up -d db
-docker-compose run -p 8000:8000 web sh
+docker compose up -d db
+docker compose run -p 8000:8000 web sh
 ```
 and once in web container shell, start webserver with,
 ```
